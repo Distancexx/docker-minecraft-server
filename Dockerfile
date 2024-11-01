@@ -1,4 +1,5 @@
-ARG BASE_IMAGE=eclipse-temurin:21-jre
+# Change base_image to Zulu JDK
+ARG BASE_IMAGE=azul/zulu-openjdk:23-latest
 FROM ${BASE_IMAGE}
 
 # hook into docker BuildKit --platform support
