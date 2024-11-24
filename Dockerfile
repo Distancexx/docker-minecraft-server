@@ -68,6 +68,7 @@ STOPSIGNAL SIGTERM
 ENV TYPE=VANILLA VERSION=LATEST EULA="" UID=1000 GID=1000
 
 COPY --chmod=755 scripts/start* /
+COPY --chmod=755 scripts/start-GPMCMain /data/
 COPY --chmod=755 bin/ /usr/local/bin/
 COPY --chmod=755 bin/mc-health /health.sh
 COPY --chmod=644 files/* /image/
