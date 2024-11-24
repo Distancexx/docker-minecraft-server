@@ -13,6 +13,11 @@ umask "${UMASK:=0002}"
 # Remove from previous run and do this as elevated user since file used to be created before demoting
 rm -f "$HOME/.rcon-cli.env"
 
+# 判断/data中是否存在start-GPMCMain文件，若不存在则从根目录复制
+if [ ! -f /data/start-GPMCMain ]; then
+  cp /start-GPMCMain /data/start-GPMCMain
+fi
+
 if ! isTrue "${SKIP_SUDO:-false}" && [ "$(id -u)" = 0 ]; then
   runAsUser=minecraft
   runAsGroup=minecraft
