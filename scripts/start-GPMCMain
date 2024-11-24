@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 请勿删除，此为启动入口，用于自动部署
+# Do not delete, this file is used for automatic deployment
+
+# 可自定义修改以下内容以实现自定义启动
+# You can customize the following content to achieve custom startup
+
+exec java -jar /data/*.jar
