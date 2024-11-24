@@ -267,7 +267,7 @@ if [[ ${TYPE} == "CURSEFORGE" && "${SERVER}" ]]; then
     set -x
   fi
   # exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" java $JVM_XX_OPTS $JVM_OPTS $expandedDOpts -jar "$(basename "${SERVER}")" "$@" $EXTRA_ARGS
-  exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" bash /start-GPMCMain
+  exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" bash /data/start-GPMCMain
 elif [[ ${TYPE} == "CURSEFORGE" ]]; then
   mcServerRunnerArgs+=(--shell bash)
 
@@ -306,7 +306,7 @@ EOF
         sed -i "s~JAVA_ARGS=.*~JAVA_ARGS=\"${JVM_ARGS}\"~" "${FTB_DIR}/variables.txt"
     fi
     # exec mc-server-runner "${mcServerRunnerArgs[@]}" "${finalArgs[@]}"
-    exec mc-server-runner "${mcServerRunnerArgs[@]}" bash /start-GPMCMain
+    exec mc-server-runner "${mcServerRunnerArgs[@]}" bash /data/start-GPMCMain
   fi
 elif [[ $SERVER =~ run.sh ]]; then
   log "Using Forge supplied run.sh script..."
@@ -319,7 +319,7 @@ elif [[ $SERVER =~ run.sh ]]; then
     set -x
   fi
   # exec mc-server-runner "${mcServerRunnerArgs[@]}" --shell bash "${SERVER}" $EXTRA_ARGS
-  exec mc-server-runner "${mcServerRunnerArgs[@]}" bash /start-GPMCMain
+  exec mc-server-runner "${mcServerRunnerArgs[@]}" bash /data/start-GPMCMain
 else
   # If we have a bootstrap.txt file... feed that in to the server stdin
   if [ -f $bootstrapPath ]; then
@@ -359,10 +359,10 @@ else
 
   if isTrue "${EXEC_DIRECTLY:-false}"; then
     # exec java "${finalArgs[@]}"
-    exec bash /start-GPMCMain
+    exec bash /data/start-GPMCMain
   else
     # exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" java "${finalArgs[@]}"
-    exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" bash /start-GPMCMain
+    exec mc-server-runner ${bootstrapArgs} "${mcServerRunnerArgs[@]}" bash /data/start-GPMCMain
   fi
 fi
 
